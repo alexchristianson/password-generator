@@ -108,15 +108,19 @@ var specialCharacters = [
 
 var pwordOptions = function () {
   var passLength = (
-    window.prompt("How many characters would yo like yor password to be? (Select a number between 8-128)")
+    window.prompt("How many characters would your like your password to be? (Select a number between 8-128)")
   );
     // if invalid number is entered, go back to question
-    if (passLength < 8 || pwordLength > 128) {
+    if (passLength < 8 || passLength > 128) {
       window.alert("Select a number between 8 and 128!");
       // how to go back to question?
+      return;
     }
     // if user enters something other than a number, go back to question
-      // how do I determine if user put number or not?
+    if (isNaN(passLength) === true) {
+      window.alert("Select a number between 8 and 128!");
+      return;
+    }
   
   var confirmLowerCase = confirm("Do you want your password to include lower case letters?");
 
@@ -126,6 +130,16 @@ var pwordOptions = function () {
 
   var confirmSpecChar = confirm("Do you want your password to include special characters?");
 
+  // object to hold options
+  var userChoices = {
+    lowerCaseChoice: confirmLowerCase,
+    upperCaseChoice: confirmUpperCase,
+    numbersChoice: confirmNumbers,
+    specialCharactersChoice: confirmSpecChar,
+    passwordLength: passLength
+  }
+  console.log(userChoices);
+  return(userChoices);
 }
 
 
@@ -136,7 +150,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword();
+  var password = pwordOptions();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
