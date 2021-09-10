@@ -142,6 +142,16 @@ var pwordOptions = function () {
   return(userChoices);
 }
 
+function randomNumber(characterArray) {
+  var randomIndex = Math.floor(Math.random() * characterArray.length)
+  var indexValue = characterArray[randomIndex];
+  return(indexValue);
+};
+
+function generatePassword() {
+  
+}
+
 
 
 
