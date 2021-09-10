@@ -106,7 +106,7 @@ var specialCharacters = [
   "~"
 ];
 
-var pwordOptions = function () {
+function pwordOptions () {
   var passLength = (
     window.prompt("How many characters would your like your password to be? (Select a number between 8-128)")
   );
@@ -139,18 +139,33 @@ var pwordOptions = function () {
     passwordLength: passLength
   }
   console.log(userChoices);
-  return(userChoices);
-}
+  return userChoices;
+};
 
 function randomNumber(characterArray) {
   var randomIndex = Math.floor(Math.random() * characterArray.length)
   var indexValue = characterArray[randomIndex];
-  return(indexValue);
+  return indexValue;
 };
 
 function generatePassword() {
-  
-}
+  var userOptions = pwordOptions();
+  var possibleCharacters = [];
+  var newRandomPassword = [];
+
+  if (userOptions.lowerCaseChoice === true) {
+    possibleCharacters = possibleCharacters.concat(lowerCaseLetters);
+    possibleCharacters.push(randomNumber(lowerCaseLetters))
+  }
+
+
+  for (var i=0; i < userOptions.passwordLength; i++) {
+    var stagedPassword = randomNumber(possibleCharacters);
+    newRandomPassword.push(stagedPassword);
+  }
+console.log(newRandomPassword.join(""))
+
+};
 
 
 
@@ -160,7 +175,7 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var password = pwordOptions();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
