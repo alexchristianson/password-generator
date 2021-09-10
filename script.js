@@ -158,13 +158,28 @@ function generatePassword() {
     possibleCharacters.push(randomNumber(lowerCaseLetters))
   }
 
+  if (userOptions.upperCaseChoice === true) {
+    possibleCharacters = possibleCharacters.concat(upperCaseLetters);
+    possibleCharacters.push(randomNumber(upperCaseLetters))
+  }
+
+  if (userOptions.numbersChoice === true) {
+    possibleCharacters = possibleCharacters.concat(numbers);
+    possibleCharacters.push(randomNumber(numbers))
+  }
+
+  if (userOptions.specialCharactersChoice === true) {
+    possibleCharacters = possibleCharacters.concat(specialCharacters);
+    possibleCharacters.push(randomNumber(specialCharacters))
+  }
+
 
   for (var i=0; i < userOptions.passwordLength; i++) {
     var stagedPassword = randomNumber(possibleCharacters);
     newRandomPassword.push(stagedPassword);
   }
 console.log(newRandomPassword.join(""))
-
+return newRandomPassword.join("");
 };
 
 
