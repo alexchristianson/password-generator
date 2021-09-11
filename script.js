@@ -1,3 +1,5 @@
+window.alert ('Click "Generate Password" to create your password. Be sure to select at least type of character.')
+
 //Array of lower case letters
 var lowerCaseLetters = [
   "a",
@@ -130,6 +132,10 @@ function pwordOptions () {
 
   var confirmSpecChar = confirm("Do you want your password to include special characters?");
 
+  if (confirmLowerCase === false && confirmUpperCase === false && confirmNumbers === false && confirmSpecChar === false) {
+    window.alert('You did not select any type of characters. Please click "Generate Password" and select at least one character type.')
+  }
+
   // object to hold options
   var userChoices = {
     lowerCaseChoice: confirmLowerCase,
@@ -181,7 +187,6 @@ function generatePassword() {
 console.log(newRandomPassword.join(""))
 return newRandomPassword.join("");
 };
-
 
 
 
