@@ -1,4 +1,4 @@
-window.alert ('Click "Generate Password" to create your password. Be sure to select at least type of character.')
+window.alert ('Click "Generate Password" to create your password. Be sure to select at least 1 type of character.')
 
 //Array of lower case letters
 var lowerCaseLetters = [
@@ -109,18 +109,18 @@ var specialCharacters = [
 ];
 
 function pwordOptions () {
-  var passLength = (
+  var passLength = parseInt(
     window.prompt("How many characters would your like your password to be? (Select a number between 8-128)")
   );
     // if invalid number is entered, go back to question
     if (passLength < 8 || passLength > 128) {
-      window.alert("Select a number between 8 and 128!");
+      window.alert("You did not select a number between 8 - 128. Please try again!");
       // how to go back to question?
       return;
     }
     // if user enters something other than a number, go back to question
     if (isNaN(passLength) === true) {
-      window.alert("Select a number between 8 and 128!");
+      window.alert("You did not select a number between 8 - 128. Please try again!");
       return;
     }
   
@@ -144,19 +144,24 @@ function pwordOptions () {
     specialCharactersChoice: confirmSpecChar,
     passwordLength: passLength
   }
-  console.log(userChoices);
+
   return userChoices;
 };
 
+// function to make randomized array from user selections
 function randomNumber(characterArray) {
-  var randomIndex = Math.floor(Math.random() * characterArray.length)
-  var indexValue = characterArray[randomIndex];
-  return indexValue;
+  var randomCharacter = Math.floor(Math.random() * characterArray.length)
+  var randomSelections = characterArray[randomCharacter];
+
+  return randomSelections;
 };
 
+// function to create password
 function generatePassword() {
   var userOptions = pwordOptions();
+
   var possibleCharacters = [];
+
   var newRandomPassword = [];
 
   if (userOptions.lowerCaseChoice === true) {
